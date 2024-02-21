@@ -11,4 +11,11 @@
         {
             return $this->render('index');
         }
+
+
+        public function actionView()
+        {
+            
+        }
+
     }
