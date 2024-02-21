@@ -11,16 +11,14 @@ use yii\filters\VerbFilter;
 
 class MyController extends Controller
 {
-    /**
-     * @inheritDoc
-     */
+   
     public function behaviors()
     {
         return array_merge(
             parent::behaviors(),
             [
                 'verbs' => [
-                    'class' => VerbFilter::className(),
+                    'class' => VerbFilter::class(),
                     'actions' => [
                         'delete' => ['POST'],
                     ],
@@ -44,9 +42,7 @@ class MyController extends Controller
 
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        return $this->render('view', ['model' => $this->findModel($id)]);
     }
 
 
@@ -66,9 +62,7 @@ class MyController extends Controller
             $model->loadDefaultValues();
         }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+        return $this->render('create', ['model' => $model]);
     }
 
 
