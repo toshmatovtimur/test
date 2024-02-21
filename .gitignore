@@ -36,3 +36,6 @@ tests/_support/_generated
 /.vagrant
 
 /vendor
+/.vs
+PHPWebProject1.phpproj
+PHPWebProject1.sln

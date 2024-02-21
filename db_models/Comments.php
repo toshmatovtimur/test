@@ -19,17 +19,11 @@ use yii\db\ActiveRecord;
  */
 class Comments extends ActiveRecord
 {
-    /**
-     * {@inheritdoc}
-     */
     public static function tableName()
     {
         return '{{%comments}}';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function rules()
     {
         return [
