@@ -3,6 +3,7 @@
 namespace app\db_models;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "{{%views}}".
@@ -15,7 +16,7 @@ use Yii;
  * @property Content $fkContent
  * @property User $fkUser
  */
-class Views extends \yii\db\ActiveRecord
+class Views extends ActiveRecord
 {
     /**
      * {@inheritdoc}

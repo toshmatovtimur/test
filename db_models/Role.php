@@ -3,6 +3,7 @@
 namespace app\db_models;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "{{%role}}".
@@ -13,7 +14,7 @@ use Yii;
  * @property Content[] $contents
  * @property User[] $users
  */
-class Role extends \yii\db\ActiveRecord
+class Role extends ActiveRecord
 {
     /**
      * {@inheritdoc}
