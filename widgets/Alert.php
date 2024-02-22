@@ -57,7 +57,7 @@ class Alert extends \yii\bootstrap5\Widget
             $flash = $session->getFlash($type);
 
             foreach ((array) $flash as $i => $message) {
-                echo \yii\bootstrap5\Alert::widget([
+                echo  \yii\bootstrap5\Alert::widget([
                     'body' => $message,
                     'closeButton' => $this->closeButton,
                     'options' => array_merge($this->options, [
