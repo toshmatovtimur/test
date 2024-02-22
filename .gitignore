@@ -39,3 +39,5 @@ tests/_support/_generated
 /.vs
 PHPWebProject1.phpproj
 PHPWebProject1.sln
+PHPWeb.phpproj
+PHPWeb.sln

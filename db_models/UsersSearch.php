@@ -11,9 +11,6 @@ use app\db_models\Users;
  */
 class UsersSearch extends Users
 {
-    /**
-     * {@inheritdoc}
-     */
     public function rules()
     {
         return [
@@ -22,12 +19,8 @@ class UsersSearch extends Users
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function scenarios()
     {
-        // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
 
@@ -42,18 +35,12 @@ class UsersSearch extends Users
     {
         $query = Users::find();
 
-        // add conditions that should always apply here
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-        ]);
+        $dataProvider = new ActiveDataProvider(['query' => $query]);
 
         $this->load($params);
 
         if (!$this->validate())
         {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
             return $dataProvider;
         }
 
@@ -66,12 +53,12 @@ class UsersSearch extends Users
         ]);
 
         $query->andFilterWhere(['ilike', 'firstname', $this->firstname])
-            ->andFilterWhere(['ilike', 'middlename', $this->middlename])
-            ->andFilterWhere(['ilike', 'lastname', $this->lastname])
-            ->andFilterWhere(['ilike', 'sex', $this->sex])
-            ->andFilterWhere(['ilike', 'email', $this->email])
-            ->andFilterWhere(['ilike', 'password', $this->password])
-            ->andFilterWhere(['ilike', 'nickname', $this->nickname]);
+              ->andFilterWhere(['ilike', 'middlename', $this->middlename])
+              ->andFilterWhere(['ilike', 'lastname', $this->lastname])
+              ->andFilterWhere(['ilike', 'sex', $this->sex])
+              ->andFilterWhere(['ilike', 'email', $this->email])
+              ->andFilterWhere(['ilike', 'password', $this->password])
+              ->andFilterWhere(['ilike', 'nickname', $this->nickname]);
 
         return $dataProvider;
     }
