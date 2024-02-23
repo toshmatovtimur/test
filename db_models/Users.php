@@ -12,7 +12,7 @@ use yii\db\ActiveRecord;
  * @property string|null $firstname
  * @property string|null $middlename
  * @property string|null $lastname
- * @property string|null $brithday
+ * @property string|null $birthday
  * @property string|null $sex
  * @property string|null $email
  * @property string|null $password
@@ -26,44 +26,45 @@ use yii\db\ActiveRecord;
  */
 class Users extends ActiveRecord
 {
-    /**
-     * {@inheritdoc}
-     */
+
+    // Имя таблицы по умолчанию
     public static function tableName()
     {
-        return '{{%users}}';
+        return 'users';
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    // Правила валидации (проверки)
     public function rules()
     {
         return [
-            [['brithday', 'date_last_logout'], 'safe'],
+            [['birthday', 'date_last_logout'], 'safe'],
+            [['birthday', 'date_last_logout'], 'date'],
             [['sex'], 'string'],
             [['fk_role'], 'default', 'value' => null],
             [['fk_role'], 'integer'],
             [['firstname', 'middlename', 'lastname', 'password'], 'string', 'max' => 120],
             [['email'], 'string', 'max' => 60],
+            [['email'], 'unique'],
             [['nickname'], 'string', 'max' => 100],
+            [['nickname'], 'unique'],
             [['fk_role'], 'exist', 'skipOnError' => true, 'targetClass' => Role::class, 'targetAttribute' => ['fk_role' => 'id']],
         ];
     }
 
+    // Атрибуты
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'firstname' => 'Firstname',
-            'middlename' => 'Middlename',
-            'lastname' => 'Lastname',
-            'brithday' => 'Brithday',
-            'sex' => 'Sex',
+            'id' => 'Код',
+            'firstname' => 'Фамилия',
+            'middlename' => 'Имя',
+            'lastname' => 'Отчество',
+            'birthday' => 'Дата рождения',
+            'sex' => 'Пол',
             'email' => 'Email',
-            'password' => 'Password',
-            'date_last_logout' => 'Date Last Logout',
-            'nickname' => 'Nickname',
+            'password' => 'Пароль',
+            'date_last_logout' => 'Дата последнего входа',
+            'nickname' => 'Никнейм',
             'fk_role' => 'Fk Role',
         ];
     }
@@ -97,4 +98,5 @@ class Users extends ActiveRecord
     {
         return $this->hasMany(View::class, ['fk_user' => 'id']);
     }
+
 }

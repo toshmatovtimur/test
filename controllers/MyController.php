@@ -9,6 +9,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 
+
 class MyController extends Controller
 { 
     public function behaviors()
@@ -35,6 +36,7 @@ class MyController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
+
 
 
     #region Actions
