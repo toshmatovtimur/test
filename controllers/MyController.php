@@ -10,8 +10,7 @@ use yii\filters\VerbFilter;
 
 
 class MyController extends Controller
-{
-   
+{ 
     public function behaviors()
     {
         return array_merge(
@@ -26,8 +25,6 @@ class MyController extends Controller
             ]
         );
     }
-
-
     public function actionIndex()
     {
         $searchModel = new UsersSearch();
@@ -40,6 +37,7 @@ class MyController extends Controller
     }
 
 
+    #region Actions
     public function actionView($id)
     {
         return $this->render('view', ['model' => $this->findModel($id)]);
@@ -75,9 +73,7 @@ class MyController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+        return $this->render('update', ['model' => $model]);
     }
 
 
@@ -88,6 +84,7 @@ class MyController extends Controller
         return $this->redirect(['index']);
     }
 
+    #endregion
 
     protected function findModel($id)
     {

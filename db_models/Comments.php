@@ -5,6 +5,7 @@ namespace app\db_models;
 use Yii;
 use yii\db\ActiveRecord;
 
+
 /**
  * This is the model class for table "{{%comments}}".
  *
@@ -36,9 +37,6 @@ class Comments extends ActiveRecord
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function attributeLabels()
     {
         return [
@@ -50,21 +48,11 @@ class Comments extends ActiveRecord
         ];
     }
 
-    /**
-     * Gets query for [[FkContent]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
     public function getFkContent()
     {
         return $this->hasOne(Content::class, ['id' => 'fk_content']);
     }
 
-    /**
-     * Gets query for [[FkUser]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
     public function getFkUser()
     {
         return $this->hasOne(User::class, ['id' => 'fk_user']);
