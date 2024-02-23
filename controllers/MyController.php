@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\db_models\Users;
 use app\db_models\UsersSearch;
+use yii\db\Query;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -84,6 +85,21 @@ class MyController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionTest()
+    {
+
+        //$test1 = Users::find()->asArray()->all();
+
+        $query = (new Query())->from('users')
+                              ->select(['users.id', 'users.email', 'role.role_user'])
+                              ->innerJoin('role', 'role.id = users.fk_role')
+                              ->all();
+
+
+
+        return $this->render('test', ['query' => $query]);
     }
 
     #endregion
