@@ -3,6 +3,7 @@
 namespace app\db_models;
 
 use Yii;
+use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
 /**
@@ -26,6 +27,8 @@ use yii\db\ActiveRecord;
  */
 class Users extends ActiveRecord
 {
+
+    public $nameRole;
 
     // Имя таблицы по умолчанию
     public static function tableName()
@@ -65,26 +68,26 @@ class Users extends ActiveRecord
             'password' => 'Пароль',
             'date_last_logout' => 'Дата последнего входа',
             'nickname' => 'Никнейм',
-            'fk_role' => 'Fk Role',
+            'fk_role' => 'Роль',
         ];
     }
 
     /**
      * Gets query for [[Comments]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getComments()
     {
-        return $this->hasMany(Comment::class, ['fk_user' => 'id']);
+        return $this->hasMany(Comments::class, ['fk_user' => 'id']);
     }
 
     /**
      * Gets query for [[FkRole]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
-    public function getFkRole()
+    public function getRole(): ActiveQuery
     {
         return $this->hasOne(Role::class, ['id' => 'fk_role']);
     }
@@ -92,11 +95,11 @@ class Users extends ActiveRecord
     /**
      * Gets query for [[Views]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
-    public function getViews()
+    public function getViews(): ActiveQuery
     {
-        return $this->hasMany(View::class, ['fk_user' => 'id']);
+        return $this->hasMany(Views::class, ['fk_user' => 'id']);
     }
 
 }

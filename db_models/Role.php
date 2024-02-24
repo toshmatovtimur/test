@@ -2,6 +2,7 @@
 
 namespace app\db_models;
 
+
 use Yii;
 use yii\db\ActiveRecord;
 
@@ -16,17 +17,13 @@ use yii\db\ActiveRecord;
  */
 class Role extends ActiveRecord
 {
-    /**
-     * {@inheritdoc}
-     */
+
     public static function tableName()
     {
-        return 'role';
+        return '{{%role}}';
     }
 
-    /**
-     * {@inheritdoc}
-     */
+
     public function rules()
     {
         return [
@@ -34,14 +31,12 @@ class Role extends ActiveRecord
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
+
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'role_user' => 'Role User',
+            'id' => 'Код',
+            'role_user' => 'Роль',
         ];
     }
 
@@ -52,7 +47,7 @@ class Role extends ActiveRecord
      */
     public function getContents()
     {
-        return $this->hasMany(Content::class, ['fk_status' => 'id']);
+        return $this->hasMany(Contents::class, ['fk_status' => 'id']);
     }
 
     /**
@@ -62,6 +57,6 @@ class Role extends ActiveRecord
      */
     public function getUsers()
     {
-        return $this->hasMany(User::class, ['fk_role' => 'id']);
+        return $this->hasMany(Users::class, ['fk_role' => 'id']);
     }
 }

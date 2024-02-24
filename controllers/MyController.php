@@ -8,6 +8,7 @@ use yii\db\Query;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use Yii;
 
 
 
@@ -90,14 +91,18 @@ class MyController extends Controller
     public function actionTest()
     {
 
-        //$test1 = Users::find()->asArray()->all();
+        // Работает значительно быстрее, в 10 раз
+        $query = (new Query())
+            ->select(['users.*', 'role.role_user as nameRole'])
+            ->from('users')
+            ->innerJoin('role', 'role.id = users.fk_role')
+            ->all();
 
-        $query = (new Query())->from('users')
-                              ->select(['users.id', 'users.email', 'role.role_user'])
-                              ->innerJoin('role', 'role.id = users.fk_role')
-                              ->all();
-
-
+        // Работает медленно, ООП способ
+//        $query = Users::find()
+//            ->select(['users.*', 'role.role_user as nameRole'])
+//            ->innerJoinWith('role', 'role.id = users.fk_role')
+//            ->all();
 
         return $this->render('test', ['query' => $query]);
     }
