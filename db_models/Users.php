@@ -5,6 +5,7 @@ namespace app\db_models;
 use Yii;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
+use yii\web\IdentityInterface;
 
 /**
  * This is the model class for table "{{%users}}".
@@ -25,18 +26,19 @@ use yii\db\ActiveRecord;
  * @property Role $fkRole
  * @property View[] $views
  */
-class Users extends ActiveRecord
+class Users extends ActiveRecord implements IdentityInterface
 {
 
-    public $nameRole;
+    const STATUS_DELETED = 0;
+    const STATUS_ACTIVE = 10;
+    public $nameRole; // Для отображения Роли при многотабличном запросе
 
-    // Имя таблицы по умолчанию
+
+
     public static function tableName()
     {
         return 'users';
     }
-
-    // Правила валидации (проверки)
     public function rules()
     {
         return [
@@ -53,8 +55,6 @@ class Users extends ActiveRecord
             [['fk_role'], 'exist', 'skipOnError' => true, 'targetClass' => Role::class, 'targetAttribute' => ['fk_role' => 'id']],
         ];
     }
-
-    // Атрибуты
     public function attributeLabels()
     {
         return [
@@ -72,34 +72,28 @@ class Users extends ActiveRecord
         ];
     }
 
-    /**
-     * Gets query for [[Comments]].
-     *
-     * @return ActiveQuery
-     */
+
+
+
+
+
+
+    #region Внешние ключи для многотабличных запросов
+
     public function getComments()
     {
         return $this->hasMany(Comments::class, ['fk_user' => 'id']);
     }
 
-    /**
-     * Gets query for [[FkRole]].
-     *
-     * @return ActiveQuery
-     */
     public function getRole(): ActiveQuery
     {
         return $this->hasOne(Role::class, ['id' => 'fk_role']);
     }
 
-    /**
-     * Gets query for [[Views]].
-     *
-     * @return ActiveQuery
-     */
     public function getViews(): ActiveQuery
     {
         return $this->hasMany(Views::class, ['fk_user' => 'id']);
     }
 
+    #endregion
 }
