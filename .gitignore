@@ -37,6 +37,7 @@ tests/_support/_generated
 
 /vendor
 /config/db.php
+\config\db.php
 /.vs
 PHPWebProject1.phpproj
 PHPWebProject1.sln
