@@ -26,7 +26,7 @@ use yii\web\IdentityInterface;
  * @property Role $fkRole
  * @property View[] $views
  */
-class Users extends ActiveRecord implements IdentityInterface
+class Users extends ActiveRecord
 {
 
     const STATUS_DELETED = 0;

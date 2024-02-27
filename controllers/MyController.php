@@ -9,7 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use Yii;
-
+use yii\web\Response;
 
 
 class MyController extends Controller
@@ -85,6 +85,11 @@ class MyController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionDownload(): Response|\yii\console\Response
+    {
+        return \Yii::$app->response->sendFile('..\resources\devochka-kraski-karie-glaza-raznye-tsveta-intel.jpg');
     }
 
     public function actionTest()
