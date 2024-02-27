@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-lg-5">
 
             <?php $form = ActiveForm::begin([
-                'id' => 'login-form',
+                'id' => 'auth-form',
                 'fieldConfig' => [
                     'template' => "{label}\n{input}\n{error}",
                     'labelOptions' => ['class' => 'col-lg-1 col-form-label mr-lg-3'],
@@ -29,13 +29,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
             ]); ?>
 
-            <?= $form->field($model, 'username')->textInput(['autofocus' => true])->label('Логин') ?>
+            <?= $form->field($model, 'login')->textInput(['autofocus' => true])->label('Логин') ?>
 
             <?= $form->field($model, 'password')->passwordInput()->label('Пароль') ?>
 
-            <?= $form->field($model, 'rememberMe')
-                     ->checkbox(['template' => "<div class=\"custom-control custom-checkbox\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",])
-                     ->label('Запомнить меня') ?>
+        <!--            --><?php //= $form->field($model, 'rememberMe')
+//                     ->checkbox(['template' => "<div class=\"custom-control custom-checkbox\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",])
+//                     ->label('Запомнить меня') ?>
 
             <div class="form-group">
                 <div>
