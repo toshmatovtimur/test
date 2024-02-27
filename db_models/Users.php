@@ -3,6 +3,7 @@
 namespace app\db_models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
@@ -26,7 +27,7 @@ use yii\web\IdentityInterface;
  * @property Role $fkRole
  * @property View[] $views
  */
-class Users extends ActiveRecord implements IdentityInterface
+class Users extends ActiveRecord
 {
 
     const STATUS_DELETED = 0;
@@ -39,6 +40,7 @@ class Users extends ActiveRecord implements IdentityInterface
     {
         return 'users';
     }
+
     public function rules()
     {
         return [
@@ -74,9 +76,7 @@ class Users extends ActiveRecord implements IdentityInterface
 
 
 
-
-
-
+    
 
     #region Внешние ключи для многотабличных запросов
 
@@ -96,4 +96,5 @@ class Users extends ActiveRecord implements IdentityInterface
     }
 
     #endregion
+
 }
