@@ -1,28 +1,29 @@
 <?php
 
-namespace app\db_models;
+namespace app\models;
 
 use Yii;
 use yii\db\ActiveRecord;
 
 /**
- * This is the model class for table "{{%contentandfoto}}".
+ * This is the model class for table "{{%views}}".
  *
  * @property int $id
  * @property int|null $fk_content
- * @property int|null $fk_foto
+ * @property int|null $fk_user
+ * @property string|null $date_view
  *
  * @property Content $fkContent
- * @property Foto $fkFoto
+ * @property User $fkUser
  */
-class Contentandfoto extends ActiveRecord
+class Views extends ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return '{{%contentandfoto}}';
+        return '{{%views}}';
     }
 
     /**
@@ -31,10 +32,11 @@ class Contentandfoto extends ActiveRecord
     public function rules()
     {
         return [
-            [['fk_content', 'fk_foto'], 'default', 'value' => null],
-            [['fk_content', 'fk_foto'], 'integer'],
+            [['fk_content', 'fk_user'], 'default', 'value' => null],
+            [['fk_content', 'fk_user'], 'integer'],
+            [['date_view'], 'safe'],
             [['fk_content'], 'exist', 'skipOnError' => true, 'targetClass' => Content::class, 'targetAttribute' => ['fk_content' => 'id']],
-            [['fk_foto'], 'exist', 'skipOnError' => true, 'targetClass' => Foto::class, 'targetAttribute' => ['fk_foto' => 'id']],
+            [['fk_user'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['fk_user' => 'id']],
         ];
     }
 
@@ -46,7 +48,8 @@ class Contentandfoto extends ActiveRecord
         return [
             'id' => 'ID',
             'fk_content' => 'Fk Content',
-            'fk_foto' => 'Fk Foto',
+            'fk_user' => 'Fk User',
+            'date_view' => 'Date View',
         ];
     }
 
@@ -61,12 +64,12 @@ class Contentandfoto extends ActiveRecord
     }
 
     /**
-     * Gets query for [[FkFoto]].
+     * Gets query for [[FkUser]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getFkFoto()
+    public function getFkUser()
     {
-        return $this->hasOne(Foto::class, ['id' => 'fk_foto']);
+        return $this->hasOne(User::class, ['id' => 'fk_user']);
     }
 }

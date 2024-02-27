@@ -1,13 +1,13 @@
 <?php
 
-namespace app\db_models;
+namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\db_models\Users;
 
 /**
- * UsersSearch represents the model behind the search form of `app\db_models\Users`.
+ * UsersSearch represents the model behind the search form of `app\models\Users`.
  */
 class UsersSearch extends Users
 {
@@ -36,6 +36,9 @@ class UsersSearch extends Users
         $query = Users::find();
 
         $dataProvider = new ActiveDataProvider(['query' => $query]);
+
+        $dataProvider->pagination->pageSize = 10;
+
 
         $this->load($params);
 

@@ -94,19 +94,6 @@ class MyController extends Controller
 
     public function actionTest()
     {
-         #region Query подход
-        // Работает значительно быстрее, в 10 раз
-//        $query = (new Query())
-//            ->select(['users.*', 'role.role_user as nameRole'])
-//            ->from('users')
-//            ->innerJoin('role', 'role.id = users.fk_role')
-//            ->all();
-         #endregion
-
-        $query = Users::find()
-            ->select(['users.*', 'role.role_user as nameRole'])
-            ->innerJoinWith('role', 'role.id = users.fk_role')
-            ->all();
 
         // Работает медленно, ООП способ
         $query = Users::find()

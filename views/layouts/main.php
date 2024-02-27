@@ -46,9 +46,12 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav'],
         'items' => [
-            ['label' => 'Главная', 'url' => ['/site/index']],
-            ['label' => 'О сайте', 'url' => ['/site/about']],
-            ['label' => 'Контакты', 'url' => ['/site/contact']],
+      //      ['label' => 'Главная', 'url' => ['/site/index']],
+//            ['label' => 'О сайте', 'url' => ['/site/about']],
+//            ['label' => 'Контакты', 'url' => ['/site/contact']],
+//            ['label' => 'Индекс', 'url' => ['/my/index']],
+//            ['label' => 'Просмотр', 'url' => ['/my/view']],
+//            ['label' => 'Тест', 'url' => ['/my/test']],
             Yii::$app->user->isGuest
                 ? ['label' => 'Авторизация', 'url' => ['/site/login']]
                 : '<li class="nav-item">'
