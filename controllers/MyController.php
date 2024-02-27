@@ -28,6 +28,10 @@ class MyController extends Controller
             ]
         );
     }
+
+
+    #region Actions
+
     public function actionIndex()
     {
         $searchModel = new UsersSearch();
@@ -40,13 +44,10 @@ class MyController extends Controller
     }
 
 
-
-    #region Actions
     public function actionView($id)
     {
         return $this->render('view', ['model' => $this->findModel($id)]);
     }
-
 
     public function actionCreate()
     {
@@ -67,7 +68,6 @@ class MyController extends Controller
         return $this->render('create', ['model' => $model]);
     }
 
-
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -79,7 +79,6 @@ class MyController extends Controller
 
         return $this->render('update', ['model' => $model]);
     }
-
 
     public function actionDelete($id)
     {
