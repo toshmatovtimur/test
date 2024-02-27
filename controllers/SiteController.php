@@ -68,12 +68,14 @@ class SiteController extends Controller
 
 		$model = new AuthForm();
 
+//		if($model->load(Yii::$app->request->post()))
+//		{
+//			var_dump(Yii::$app->request->post());
+//			echo '<br>';
+//			var_dump($model);
+//		}
+
 		return $this->render('login', compact('model'));
-
-
-
-
-
 
     }
 

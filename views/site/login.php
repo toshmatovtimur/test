@@ -33,9 +33,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <?= $form->field($model, 'password')->passwordInput()->label('Пароль') ?>
 
-        <!--            --><?php //= $form->field($model, 'rememberMe')
-//                     ->checkbox(['template' => "<div class=\"custom-control custom-checkbox\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",])
-//                     ->label('Запомнить меня') ?>
 
             <div class="form-group">
                 <div>
@@ -48,3 +45,13 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </div>
+
+<?php
+
+$value = Yii::$app->request->post("AuthForm")["login"];
+$value1 = Yii::$app->request->post("AuthForm")["password"];
+
+
+echo $value . '<br>';
+echo $value1;
+
