@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Users;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -65,16 +66,24 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-        //$value = Yii::$app->request->post("AuthForm")["login"];
-        //$value1 = Yii::$app->request->post("AuthForm")["password"];
-        //if($value != null)
-        //{
-        //    echo $value . '<br>';
-        //    echo $value1;
-        //}
+
 
 		$model = new AuthForm();
 
+		if($model->load(Yii::$app->request->post()))
+		{
+			$email = Yii::$app->request->post("AuthForm")["email"];
+			$pass = Yii::$app->request->post("AuthForm")["password"];
+
+			$query = Users::find()->where(['email' => $email, 'password' => $pass])->one();
+			if(!empty($query))
+			{
+				return $this->goHome();
+			}
+
+			return $this->render('login', compact('model'));
+
+		}
 //		if($model->load(Yii::$app->request->post()))
 //		{
 //			var_dump(Yii::$app->request->post());

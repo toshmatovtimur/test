@@ -29,9 +29,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
             ]); ?>
 
-            <?= $form->field($model, 'login')->textInput(['autofocus' => true])->label('Логин') ?>
+            <?= $form->field($model, 'email')->textInput(['autofocus' => true])->label('Email') ?>
 
             <?= $form->field($model, 'password')->passwordInput()->label('Пароль') ?>
+
 
 
             <div class="form-group">
@@ -39,6 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= Html::submitButton('Вход', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
                 </div>
             </div>
+
 
             <?php ActiveForm::end(); ?>
 

@@ -1,18 +1,9 @@
-<?php
 
-/** @var app\models\Users $model */
-?>
 
-<?php //foreach ($model as $item): ?>
 
-<?=  $model->id  . '<br/>' . 'Почта: ' . $model->email . '<br/>' . 'Роль: ' . $model->nameRole . '<br/>'; ?>
+<?=  $model->id  . '<br/>' . 'Почта: ' . $model->email . '<br/>' . 'Роль: ' . $model->password . '<br/>'; ?>
 
-<?php //endforeach; ?>
 
-<?php
-//echo '<br/>';
-//echo '<br/>';
-//var_dump($query);
 
 
 

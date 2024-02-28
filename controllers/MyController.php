@@ -67,8 +67,6 @@ class MyController extends Controller
 
         return $this->render('create', ['model' => $model]);
     }
-
-
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -82,32 +80,33 @@ class MyController extends Controller
 
         return $this->render('update', ['model' => $model]);
     }
-
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }
-
     public function actionDownload() // Скачивание
     {
         return \Yii::$app->response->sendFile('..\resources\devochka-kraski-karie-glaza-raznye-tsveta-intel.jpg');
     }
-
     public function actionTest()
     {
 
-		$model = Users::find()
-			->select(['users.*', 'role.role_user as nameRole'])
-			->innerJoinWith('role', 'role.id = users.fk_role')
-			->where(['users.id' => 1])
-			->one();
+//		$model = Users::find()
+//			->select(['users.*', 'role.role_user as nameRole'])
+//			->innerJoinWith('role', 'role.id = users.fk_role')
+//			->where(['users.id' => 1])
+//			->one();
 
-        return $this->render('test', ['model' => $model]);
+
+
+	$model = Users::find()->with('role')->where(['id' => 1])->one();
+
+
+		return $this->render('test', ['model' => $model]);
 
     }
-
     #endregion
 
     protected function findModel($id) // Метод для запроса
