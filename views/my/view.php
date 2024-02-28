@@ -1,15 +1,16 @@
 <?php
 
 use yii\helpers\Html;
+use yii\web\YiiAsset;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
-/** @var app\db_models\Users $model */
+/** @var app\models\Users $model */
 
 $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
-\yii\web\YiiAsset::register($this);
+YiiAsset::register($this);
 ?>
 <div class="users-view">
 
@@ -33,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'firstname',
             'middlename',
             'lastname',
-            'brithday',
+            'birthday',
             'sex',
             'email:email',
             'password',

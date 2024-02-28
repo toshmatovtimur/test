@@ -20,7 +20,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'lastname')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'brithday')->textInput() ?>
+    <?= $form->field($model, 'birthday')->textInput() ?>
 
     <?= $form->field($model, 'sex')->dropDownList([ 'Male' => 'Male', 'Female' => 'Female', 'Undefined' => 'Undefined', ], ['prompt' => '']) ?>
 
