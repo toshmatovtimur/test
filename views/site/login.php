@@ -48,10 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?php
 
-$value = Yii::$app->request->post("AuthForm")["login"];
-$value1 = Yii::$app->request->post("AuthForm")["password"];
 
 
-echo $value . '<br>';
-echo $value1;
+
 

@@ -4,7 +4,7 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\db_models\Users;
+use app\models\Users;
 
 /**
  * UsersSearch represents the model behind the search form of `app\models\Users`.

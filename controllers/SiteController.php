@@ -65,6 +65,13 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+        //$value = Yii::$app->request->post("AuthForm")["login"];
+        //$value1 = Yii::$app->request->post("AuthForm")["password"];
+        //if($value != null)
+        //{
+        //    echo $value . '<br>';
+        //    echo $value1;
+        //}
 
 		$model = new AuthForm();
 

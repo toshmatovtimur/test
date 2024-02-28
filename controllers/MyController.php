@@ -2,8 +2,8 @@
 
 namespace app\controllers;
 
-use app\db_models\Users;
-use app\db_models\UsersSearch;
+use app\models\Users;
+use app\models\UsersSearch;
 use yii\db\Query;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -49,6 +49,7 @@ class MyController extends Controller
         return $this->render('view', ['model' => $this->findModel($id)]);
     }
 
+
     public function actionCreate()
     {
         $model = new Users();
@@ -68,11 +69,14 @@ class MyController extends Controller
         return $this->render('create', ['model' => $model]);
     }
 
+
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save())
+        if ($this->request->isPost
+            && $model->load($this->request->post())
+            && $model->save())
         {
             return $this->redirect(['view', 'id' => $model->id]);
         }
@@ -87,7 +91,7 @@ class MyController extends Controller
         return $this->redirect(['index']);
     }
 
-    public function actionDownload(): Response|\yii\console\Response
+    public function actionDownload() // Скачивание
     {
         return \Yii::$app->response->sendFile('..\resources\devochka-kraski-karie-glaza-raznye-tsveta-intel.jpg');
     }
@@ -109,8 +113,9 @@ class MyController extends Controller
 
     #endregion
 
-    protected function findModel($id)
+    protected function findModel($id) // Метод для запроса
     {
+
         if (($model = Users::findOne(['id' => $id])) !== null)
         {
             return $model;
