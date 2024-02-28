@@ -40,7 +40,7 @@ YiiAsset::register($this);
             'password',
             'date_last_logout',
             'nickname',
-            'fk_role',
+            'nameRole',
         ],
     ]) ?>
 

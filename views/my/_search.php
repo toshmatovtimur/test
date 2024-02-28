@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
-/** @var app\db_models\UsersSearch $model */
+/** @var app\models\UsersSearch $model */
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
@@ -26,7 +26,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'lastname') ?>
 
-    <?= $form->field($model, 'brithday') ?>
+    <?= $form->field($model, 'birthday') ?>
 
     <?php // echo $form->field($model, 'sex') ?>
 

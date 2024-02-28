@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
-/** @var app\db_models\Users $model */
+/** @var app\models\Users $model */
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
@@ -32,7 +32,7 @@ use yii\widgets\ActiveForm;
 
     
 
-    <?= $form->field($model, 'fk_role')->textInput() ?>
+    <?= $form->field($model, 'nameRole')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

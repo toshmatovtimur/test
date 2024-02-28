@@ -51,7 +51,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 //            ['label' => 'Контакты', 'url' => ['/site/contact']],
 //            ['label' => 'Индекс', 'url' => ['/my/index']],
 //            ['label' => 'Просмотр', 'url' => ['/my/view']],
-//            ['label' => 'Тест', 'url' => ['/my/test']],
+
             Yii::$app->user->isGuest
                 ? ['label' => 'Авторизация', 'url' => ['/site/login']]
                 : '<li class="nav-item">'
@@ -61,7 +61,9 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                         ['class' => 'nav-link btn btn-link logout']
                     )
                     . Html::endForm()
-                    . '</li>'
+                    . '</li>',
+             ['label' => 'Пользователи', 'url' => ['/my/index']],
+             ['label' => 'Тестовая', 'url' => ['/my/test']],
         ]
     ]);
     NavBar::end();

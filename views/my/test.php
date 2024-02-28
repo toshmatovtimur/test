@@ -1,12 +1,17 @@
+<?php
 
-<?php foreach ($query as $item): ?>
+/** @var app\models\Users $model */
+?>
 
-<?= 'Почта: ' . $item['email'] . ' ' . 'Роль: ' . $item['nameRole'] . '<br/>'; ?>
+<?php foreach ($model as $item): ?>
+
+<?=  $item->id  . '<br/>' . 'Почта: ' . $item->email . '<br/>' . 'Роль: ' . $item->nameRole . '<br/>'; ?>
 
 <?php endforeach; ?>
 
 <?php
-
+//echo '<br/>';
+//echo '<br/>';
 //var_dump($query);
 
 

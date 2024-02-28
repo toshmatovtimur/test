@@ -4,7 +4,6 @@ namespace app\controllers;
 
 use app\models\Users;
 use app\models\UsersSearch;
-use yii\db\Query;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -100,14 +99,13 @@ class MyController extends Controller
     {
 
         // Работает медленно, ООП способ
-        $query = Users::find()
-            ->select(['users.*', 'role.role_user as nameRole'])
-            ->innerJoinWith('role', 'role.id = users.fk_role')
-            ->all();
+		$model = Users::find()
+			->select(['users.*', 'role.role_user as nameRole'])
+			->innerJoinWith('role', 'role.id = users.fk_role')
+			->where(['users.id' => 1])
+			->all();
 
-        return $this->render('test', ['query' => $query]);
-
-
+        return $this->render('test', ['model' => $model]);
 
     }
 
@@ -116,11 +114,21 @@ class MyController extends Controller
     protected function findModel($id) // Метод для запроса
     {
 
-        if (($model = Users::findOne(['id' => $id])) !== null)
+		$model = Users::find()
+				->select(['users.*', 'role.role_user as nameRole'])
+				->innerJoinWith('role', 'role.id = users.fk_role')
+				->where(['users.id' => $id])
+				->all();
+
+
+        if ($model !== null)
         {
             return $model;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+
+
 }

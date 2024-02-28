@@ -29,11 +29,7 @@ use yii\web\IdentityInterface;
  */
 class Users extends ActiveRecord
 {
-
-    const STATUS_DELETED = 0;
-    const STATUS_ACTIVE = 10;
     public $nameRole; // Для отображения Роли при многотабличном запросе
-
 
 
     public static function tableName()
@@ -70,7 +66,7 @@ class Users extends ActiveRecord
             'password' => 'Пароль',
             'date_last_logout' => 'Дата последнего входа',
             'nickname' => 'Никнейм',
-            'fk_role' => 'Роль',
+            'nameRole' => 'Роль',
         ];
     }
 

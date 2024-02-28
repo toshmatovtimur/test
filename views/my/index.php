@@ -8,7 +8,7 @@ use yii\grid\GridView;
 use yii\widgets\Pjax;
 
 /** @var yii\web\View $this */
-/** @var app\db_models\UsersSearch $searchModel */
+/** @var app\models\UsersSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
 $this->title = 'Users';
@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'password',
             //'date_last_logout',
             'nickname',
-            //'fk_role',
+            'nameRole',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Users $model, $key, $index, $column)
