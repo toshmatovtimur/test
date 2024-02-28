@@ -76,6 +76,7 @@ class SiteController extends Controller
 			$pass = Yii::$app->request->post("AuthForm")["password"];
 
 			$query = Users::find()->where(['email' => $email, 'password' => $pass])->one();
+
 			if(!empty($query))
 			{
 				return $this->goHome();
