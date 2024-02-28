@@ -98,12 +98,11 @@ class MyController extends Controller
     public function actionTest()
     {
 
-        // Работает медленно, ООП способ
 		$model = Users::find()
 			->select(['users.*', 'role.role_user as nameRole'])
 			->innerJoinWith('role', 'role.id = users.fk_role')
 			->where(['users.id' => 1])
-			->all();
+			->one();
 
         return $this->render('test', ['model' => $model]);
 
@@ -115,10 +114,10 @@ class MyController extends Controller
     {
 
 		$model = Users::find()
-				->select(['users.*', 'role.role_user as nameRole'])
-				->innerJoinWith('role', 'role.id = users.fk_role')
-				->where(['users.id' => $id])
-				->all();
+			->select(['users.*', 'role.role_user as nameRole'])
+			->innerJoinWith('role', 'role.id = users.fk_role')
+			->where(['users.id' => $id])
+			->one();
 
 
         if ($model !== null)

@@ -3,11 +3,11 @@
 /** @var app\models\Users $model */
 ?>
 
-<?php foreach ($model as $item): ?>
+<?php //foreach ($model as $item): ?>
 
-<?=  $item->id  . '<br/>' . 'Почта: ' . $item->email . '<br/>' . 'Роль: ' . $item->nameRole . '<br/>'; ?>
+<?=  $model->id  . '<br/>' . 'Почта: ' . $model->email . '<br/>' . 'Роль: ' . $model->nameRole . '<br/>'; ?>
 
-<?php endforeach; ?>
+<?php //endforeach; ?>
 
 <?php
 //echo '<br/>';
