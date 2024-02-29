@@ -99,12 +99,11 @@ class MyController extends Controller
 //			->where(['users.id' => 1])
 //			->one();
 
-
-
-	$model = Users::find()->with('role')->where(['id' => 1])->one();
-
-
-		return $this->render('test', ['model' => $model]);
+			$model = Users::find()->with('role')->where(['id' => 1])->one();
+	        $hash = md5('admin', false);
+	        $hash1 = md5('a.dmin', false);
+	        $hash2 = md5('admiN', false);
+			return $this->render('test', compact('model', 'hash', 'hash1','hash2'));
 
     }
     #endregion

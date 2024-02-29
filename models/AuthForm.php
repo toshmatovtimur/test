@@ -6,18 +6,30 @@ use yii\base\Model;
 
 class AuthForm extends Model
 {
-
-
 	public $email;
 	public $password;
 
 	public function rules()
 	{
-		return [
+		return
+		[
 			[['password', 'email'], 'required' ],
 			[ 'email', 'email' ],
 		];
 	}
+
+	public function attributeLabels()
+	{
+		return
+		[
+			'email' => 'Email',
+			'password' => 'Пароль',
+		];
+	}
+
+	
+
+
 
 }
 

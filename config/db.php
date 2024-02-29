@@ -1,9 +1,10 @@
 <?php
 
-return [
+return
+[
     'class' => 'yii\db\Connection',
     'dsn' => 'pgsql:host=localhost;dbname=ks',
-    'username' => 'postgres',
-    'password' => 'postgres',
+    'username' => 'root',
+    'password' => 'root',
     'charset' => 'utf8',
 ];

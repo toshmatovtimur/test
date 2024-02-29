@@ -1,7 +1,10 @@
 
 
 
-<?=  $model->id  . '<br/>' . 'Почта: ' . $model->email . '<br/>' . 'Роль: ' . $model->password . '<br/>'; ?>
+<?=  $model->id  . '<br/>' . 'Почта: ' . $model->email . '<br/>'; ?>
+<?=  $hash . '<br/>';?>
+<?=  $hash1 . '<br/>';?>
+<?=  $hash2 . '<br/>';?>
 
 
 

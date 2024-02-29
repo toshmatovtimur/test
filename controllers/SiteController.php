@@ -33,9 +33,6 @@ class SiteController extends Controller
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function actions()
     {
         return [
@@ -49,25 +46,15 @@ class SiteController extends Controller
         ];
     }
 
-    /**
-     * Displays homepage.
-     *
-     * @return string
-     */
+
     public function actionIndex()
     {
         return $this->render('index');
     }
 
-    /**
-     * Login action.
-     *
-     * @return Response|string
-     */
+
     public function actionLogin()
     {
-
-
 		$model = new AuthForm();
 
 		if($model->load(Yii::$app->request->post()))
@@ -85,22 +72,12 @@ class SiteController extends Controller
 			return $this->render('login', compact('model'));
 
 		}
-//		if($model->load(Yii::$app->request->post()))
-//		{
-//			var_dump(Yii::$app->request->post());
-//			echo '<br>';
-//			var_dump($model);
-//		}
 
 		return $this->render('login', compact('model'));
 
     }
 
-    /**
-     * Logout action.
-     *
-     * @return Response
-     */
+
     public function actionLogout()
     {
         Yii::$app->user->logout();
@@ -108,12 +85,8 @@ class SiteController extends Controller
         return $this->goHome();
     }
 
-    /**
-     * Displays contact page.
-     *
-     * @return Response|string
-     */
-    public function actionContact()
+
+    public function actionContact() // Displays contact page.
     {
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail']))
@@ -123,16 +96,12 @@ class SiteController extends Controller
             return $this->refresh();
         }
 
-        return $this->render('contact', ['model' => $model,]);
+        return $this->render('contact', compact('model'));
 
     }
 
-    /**
-     * Displays about page.
-     *
-     * @return string
-     */
-    public function actionAbout()
+
+    public function actionAbout() // Displays about page.
     {
         return $this->render('about');
     }
