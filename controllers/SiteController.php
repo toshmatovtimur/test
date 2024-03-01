@@ -62,20 +62,24 @@ class SiteController extends Controller
 			$email = Yii::$app->request->post("AuthForm")["email"];
 			$pass = Yii::$app->request->post("AuthForm")["password"];
 
-			$query = Users::find()->where(['email' => $email, 'password' => $pass])->one();
+			$query = Users::find()->where(['email' => $email, 'password_md5' => md5($pass)])->one();
 
 			if(!empty($query))
 			{
 				return $this->goHome();
 			}
 
-			return $this->render('login', compact('model'));
-
 		}
 
 		return $this->render('login', compact('model'));
-
     }
+
+	public function actionRegistration()
+	{
+		return $this->render('registration');
+	}
+
+
 
 
     public function actionLogout()

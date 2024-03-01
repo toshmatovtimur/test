@@ -29,9 +29,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
             ]); ?>
 
-            <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
-
-            <?= $form->field($model, 'password')->passwordInput() ?>
+<!--            --><?php //= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
+<!---->
+<!--            --><?php //= $form->field($model, 'password')->passwordInput() ?>
 
 
 

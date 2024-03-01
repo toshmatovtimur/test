@@ -1,10 +1,8 @@
 
 
+<?=  'Админ  ' .  $hash_admin . '<br/>';?>
+<?=  'User  ' . $hash_user . '<br/>';?>
 
-<?=  $model->id  . '<br/>' . 'Почта: ' . $model->email . '<br/>'; ?>
-<?=  $hash . '<br/>';?>
-<?=  $hash1 . '<br/>';?>
-<?=  $hash2 . '<br/>';?>
 
 
 

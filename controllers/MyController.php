@@ -99,14 +99,17 @@ class MyController extends Controller
 //			->where(['users.id' => 1])
 //			->one();
 
-			$model = Users::find()->with('role')->where(['id' => 1])->one();
-	        $hash = md5('admin', false);
-	        $hash1 = md5('a.dmin', false);
-	        $hash2 = md5('admiN', false);
-			return $this->render('test', compact('model', 'hash', 'hash1','hash2'));
+	        $hash_admin = md5('admin', false);
+	        $hash_user = md5('user', false);
+			return $this->render('test', compact('hash_admin', 'hash_user'));
 
     }
     #endregion
+
+
+
+
+
 
     protected function findModel($id) // Метод для запроса
     {

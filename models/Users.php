@@ -17,6 +17,7 @@ use yii\web\IdentityInterface;
  * @property string|null $middlename
  * @property string|null $lastname
  * @property string|null $birthday
+ * @property string|null $auth_key
  * @property string|null $sex
  * @property string|null $email
  * @property string|null $password_md5
@@ -32,16 +33,16 @@ use yii\web\IdentityInterface;
  * @property Role $fkRole
  * @property View[] $views
  */
-class Users extends ActiveRecord
+class Users extends ActiveRecord implements IdentityInterface
 {
     public $nameRole; // Для отображения Роли при многотабличном запросе
-
+	const STATUS_DELETED = 0;
+	const STATUS_ACTIVE = 10;
 
     public static function tableName()
     {
-        return 'users';
+        return "{{%users}}";
     }
-
     public function rules()
     {
         return [
@@ -75,9 +76,58 @@ class Users extends ActiveRecord
         ];
     }
 
+	public function behaviors()
+	{
+		return
+		[
+			TimestampBehavior::className(),
+		];
+	}
+
+	public static function findIdentity($id)
+	{
+		return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
+	}
+
+	public static function findIdentityByAccessToken($token, $type = null)
+	{
+		throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
+	}
+
+	public function getId()
+	{
+		return $this->getPrimaryKey();
+	}
+
+	public function validateAuthKey($authKey)
+	{
+		return $this->getAuthKey() === $authKey;
+	}
+
+	public function setPasswordInMD5($password)
+	{
+		$this->password_hash = md5($password);
+	}
+
+	/**
+	 * Generates "remember me" authentication key
+	 */
+	public function generateAuthKey()
+	{
+		$this->auth_key = Yii::$app->security->generateRandomString();
+	}
 
 
-    
+	public function validatePassword($password)
+	{
+		return Yii::$app->security->validatePassword($password, $this->password_hash);
+	}
+
+
+	public function getAuthKey()
+	{
+		return $this->auth_key;
+	}
 
     #region Внешние ключи для многотабличных запросов
 
@@ -97,5 +147,4 @@ class Users extends ActiveRecord
     }
 
     #endregion
-
 }
