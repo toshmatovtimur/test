@@ -15,7 +15,7 @@ class UsersSearch extends Users
     {
         return [
             [['id', 'fk_role'], 'integer'],
-            [['firstname', 'middlename', 'lastname', "birthday", 'sex', 'email', 'password', 'date_last_logout', 'nickname'], 'safe'],
+            [['firstname', 'middlename', 'lastname', "birthday", 'sex', 'email', 'password_md5', 'date_last_logout', 'nickname'], 'safe'],
         ];
     }
 
@@ -50,7 +50,7 @@ class UsersSearch extends Users
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'brithday' => $this->birthday,
+            'birthday' => $this->birthday,
             'date_last_logout' => $this->date_last_logout,
             'fk_role' => $this->fk_role,
         ]);
@@ -60,7 +60,7 @@ class UsersSearch extends Users
               ->andFilterWhere(['ilike', 'lastname', $this->lastname])
               ->andFilterWhere(['ilike', 'sex', $this->sex])
               ->andFilterWhere(['ilike', 'email', $this->email])
-              ->andFilterWhere(['ilike', 'password', $this->password])
+              ->andFilterWhere(['ilike', 'password', $this->password_md5])
               ->andFilterWhere(['ilike', 'nickname', $this->nickname]);
 
         return $dataProvider;

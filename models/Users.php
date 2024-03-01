@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use Cassandra\Date;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
@@ -18,10 +19,14 @@ use yii\web\IdentityInterface;
  * @property string|null $birthday
  * @property string|null $sex
  * @property string|null $email
- * @property string|null $password
+ * @property string|null $password_md5
  * @property string|null $date_last_logout
  * @property string|null $nickname
  * @property int|null $fk_role
+ * @property string|null $created_at
+ * @property string|null $updated_at
+ * @property int|null $status
+ * @property int|null $password_reset_token
  *
  * @property Comment[] $comments
  * @property Role $fkRole
