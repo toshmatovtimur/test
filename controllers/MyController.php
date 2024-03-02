@@ -99,8 +99,8 @@ class MyController extends Controller
 //			->where(['users.id' => 1])
 //			->one();
 
-	        $hash_admin = md5('admin', false);
-	        $hash_user = md5('user', false);
+	        $hash_admin = md5('admin');
+	        $hash_user = md5('user');
 			return $this->render('test', compact('hash_admin', 'hash_user'));
 
     }
