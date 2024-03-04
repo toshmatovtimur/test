@@ -17,13 +17,18 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout'],
+                'only' => ['logout', 'login', 'registration'],
                 'rules' => [
-                    [
-                        'actions' => ['logout'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
+	                [
+		                'allow' => true,
+		                'actions' => ['login', 'registration'],
+		                'roles' => ['?'],
+	                ],
+	                [
+		                'allow' => true,
+		                'actions' => ['logout'],
+		                'roles' => ['@'],
+	                ],
                 ],
             ],
             'verbs' => [
@@ -59,13 +64,14 @@ class SiteController extends Controller
 		if($model->load(Yii::$app->request->post()))
 		{
 			$email = Yii::$app->request->post("AuthForm")["email"];
-			$pass = Yii::$app->request->post("AuthForm")["password"];
+			$pass = Yii::$app->request->post("AuthForm")["password_md5"];
 			$captcha = Yii::$app->request->post("AuthForm")["verifyCode"];
 
-			$query = Users::find()->where(['email' => $email, 'password' => md5($pass)])->one();
+			$query = Users::find()->where(['email' => $email, 'password_md5' => md5($pass)])->one();
 
 			if(!empty($query) && $captcha)
 			{
+				Yii::$app->user->login();
 				return $this->goHome();
 			}
 
@@ -76,16 +82,20 @@ class SiteController extends Controller
 		return $this->render('login', compact('model'));
     }
 
-	public function actionRegistration()
-	{
-		return $this->render('registration');
-	}
+
     public function actionLogout()
     {
         Yii::$app->user->logout();
 
         return $this->goHome();
     }
+
+	public function actionSignup()
+	{
+		return $this->render('signup');
+	}
+
+
     public function actionContact() // Displays contact page.
     {
         $model = new ContactForm();

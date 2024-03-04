@@ -4,15 +4,52 @@
 
 	use yii\base\Model;
 
-	class RegistrationForm extends Model
+	class SignupForm extends Model
 	{
 		public $firstname;
-		public $name;
+		public $middlename;
 		public $lastname;
-		public $email;
 		public $birthday;
+		public $sex;
+
+		public $email;
+
 		public $password;
+
 		public $confirm;
+
+
+		public function rules()  // Правила
+		{
+			return
+			[
+				[['password', 'email', 'firstname', 'middlename', 'birthday', 'sex', 'email', 'password', 'confirm'], 'required' ],
+				[['password', 'email', 'firstname', 'middlename', 'birthday', 'sex', 'email', 'password', 'confirm'], 'trim' ],
+				[ 'email', 'email'],
+				[ 'email', 'unique', 'targetClass' => '\app\models\Users', 'message' => 'This email address has already been taken.' ],
+				[ 'verifyCode', 'captcha' ],
+			];
+		}
+
+		public function attributeLabels() // Аттрибуты
+		{
+			return
+			[
+				'firstname' => 'Фамилия',
+				'middlename' => 'Имя',
+				'lastname' => 'Отчество',
+				'birthday' => 'Дата рождения',
+				'sex' => 'Пол',
+				'email' => 'Email',
+				'password' => 'Пароль',
+				'confirm' => 'Повторите пароль',
+				'verifyCode' => 'Напечатайте слово',
+			];
+		}
+
+
+
+
 
 
 

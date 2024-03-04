@@ -57,7 +57,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                     )
                     . Html::endForm()
                     . '</li>',
-             ['label' => 'Регистрация', 'url' => ['/site/registration']],
+             ['label' => 'Регистрация', 'url' => ['/site/signup']],
              ['label' => 'Пользователи', 'url' => ['/my/index']],
              ['label' => 'Тестовая', 'url' => ['/my/test']],
         ]

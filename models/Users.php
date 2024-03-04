@@ -2,11 +2,15 @@
 
 namespace app\models;
 
-use Cassandra\Date;
+
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
+use yii\filters\auth\CompositeAuth;
+use yii\filters\auth\HttpBasicAuth;
+use yii\filters\auth\HttpBearerAuth;
+use yii\filters\auth\QueryParamAuth;
 use yii\web\IdentityInterface;
 
 /**
@@ -26,7 +30,7 @@ use yii\web\IdentityInterface;
  * @property string|null $created_at
  * @property string|null $updated_at
  * @property int|null $status
- * @property int|null $password_reset_token
+ * @property string|null $access_token
  *
  * @property Comment[] $comments
  * @property Role $fkRole
@@ -36,16 +40,16 @@ class Users extends ActiveRecord implements IdentityInterface
 {
     public $nameRole; // Для отображения Роли при многотабличном запросе
 	const STATUS_DELETED = 0;
-	const STATUS_ACTIVE = 10;
+	const STATUS_ACTIVE = 1;
 
     public static function tableName()
     {
         return "{{%users}}";
     }
+
     public function rules()
     {
         return [
-            [['birthday', 'date_last_logout'], 'safe'],
             [['birthday', 'date_last_logout'], 'date'],
             [['sex'], 'string'],
             [['fk_role'], 'default', 'value' => null],
@@ -53,11 +57,11 @@ class Users extends ActiveRecord implements IdentityInterface
             [['firstname', 'middlename', 'lastname', 'password'], 'string', 'max' => 120],
             [['email'], 'string', 'max' => 60],
             [['email'], 'unique'],
-            [['nickname'], 'string', 'max' => 100],
-            [['nickname'], 'unique'],
             [['fk_role'], 'exist', 'skipOnError' => true, 'targetClass' => Role::class, 'targetAttribute' => ['fk_role' => 'id']],
         ];
     }
+
+
     public function attributeLabels()
     {
         return [
@@ -68,19 +72,32 @@ class Users extends ActiveRecord implements IdentityInterface
             'birthday' => 'Дата рождения',
             'sex' => 'Пол',
             'email' => 'Email',
-            'password' => 'Пароль',
+            'password_md5' => 'Пароль',
             'date_last_logout' => 'Дата последнего входа',
-            'nickname' => 'Никнейм',
             'nameRole' => 'Роль',
         ];
     }
 
+
+	public function init()
+	{
+		parent::init();
+		Yii::$app->user->enableSession = false;
+	}
+
+
 	public function behaviors()
 	{
-		return
-		[
-			TimestampBehavior::className(),
+		$behaviors = parent::behaviors();
+		$behaviors['authenticator'] = [
+			'class' => CompositeAuth::className(),
+			'authMethods' => [
+				HttpBasicAuth::className(),
+				HttpBearerAuth::className(),
+				QueryParamAuth::className(),
+			],
 		];
+		return $behaviors;
 	}
 
 	public static function findIdentity($id)
@@ -90,7 +107,7 @@ class Users extends ActiveRecord implements IdentityInterface
 
 	public static function findIdentityByAccessToken($token, $type = null)
 	{
-		throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
+		return static::findOne(['access_token' => $token]);
 	}
 
 	public function getId()

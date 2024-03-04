@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
 
-            <?= $form->field($model, 'password')->passwordInput() ?>
+            <?= $form->field($model, 'password_md5')->passwordInput() ?>
 
 	        <?= $form->field($model, 'verifyCode')->widget(Captcha::className()) ?>
 

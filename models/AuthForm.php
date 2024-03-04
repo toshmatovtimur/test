@@ -7,7 +7,7 @@ use yii\base\Model;
 class AuthForm extends Model
 {
 	public $email;
-	public $password;
+	public $password_md5;
 	public $verifyCode;
 
 	public function rules()
@@ -25,7 +25,8 @@ class AuthForm extends Model
 		return
 		[
 			'email' => 'Email',
-			'password' => 'Пароль',
+			'password_md5' => 'Пароль',
+			'verifyCode' => 'Введите слово ',
 		];
 	}
 
