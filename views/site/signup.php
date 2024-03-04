@@ -2,7 +2,6 @@
 
 /** @var yii\web\View $this */
 /** @var yii\bootstrap5\ActiveForm $form */
-
 /** @var app\models\Users $model */
 
 use yii\bootstrap5\ActiveForm;
@@ -20,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-lg-5">
 
             <?php $form = ActiveForm::begin([
-                'id' => 'auth-form',
+                'id' => 'signup-form',
                 'fieldConfig' => [
                     'template' => "{label}\n{input}\n{error}",
                     'labelOptions' => ['class' => 'col-lg-1 col-form-label mr-lg-3'],
@@ -29,9 +28,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
             ]); ?>
 
-<!--            --><?php //= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
-<!---->
-<!--            --><?php //= $form->field($model, 'password')->passwordInput() ?>
+            <?= $form->field($model, 'email')->textInput() ?>
+
+            <?= $form->field($model, 'password')->passwordInput() ?>
+
+	        <?= $form->field($model, 'verifyCode')->widget(Captcha::className()) ?>
+
 
 
 

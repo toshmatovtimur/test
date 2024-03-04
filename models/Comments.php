@@ -14,7 +14,7 @@ use yii\db\ActiveRecord;
  * @property int|null $fk_user
  * @property string|null $date_write_comment
  * @property string|null $comment
- *
+ * 
  * @property Content $fkContent
  * @property User $fkUser
  */
@@ -57,4 +57,10 @@ class Comments extends ActiveRecord
     {
         return $this->hasOne(User::class, ['id' => 'fk_user']);
     }
+
+    public function activeAttributes()
+    {
+        return Renderer
+    }
+
 }

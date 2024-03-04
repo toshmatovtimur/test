@@ -18,6 +18,8 @@
 
 		public $confirm;
 
+		public $verifyCode;
+
 
 		public function rules()  // Правила
 		{
@@ -46,16 +48,4 @@
 				'verifyCode' => 'Напечатайте слово',
 			];
 		}
-
-
-
-
-
-
-
-
-
-
-
-
 	}

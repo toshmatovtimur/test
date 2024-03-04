@@ -2,13 +2,15 @@
 
 namespace app\controllers;
 
-use app\models\Users;
 use Yii;
+use app\models\Users;
+use app\models\AuthForm;
+use app\models\SignupForm;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
-use app\models\AuthForm;
+
 
 class SiteController extends Controller
 {
@@ -17,11 +19,11 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout', 'login', 'registration'],
+                'only' => ['logout', 'login', 'signup'],
                 'rules' => [
 	                [
 		                'allow' => true,
-		                'actions' => ['login', 'registration'],
+		                'actions' => ['login', 'signup'],
 		                'roles' => ['?'],
 	                ],
 	                [
@@ -92,7 +94,28 @@ class SiteController extends Controller
 
 	public function actionSignup()
 	{
-		return $this->render('signup');
+		$model = new SignupForm();
+
+//		if($model->load(Yii::$app->request->post()))
+//		{
+//			$email = Yii::$app->request->post("SignupForm")["email"];
+//			$pass = Yii::$app->request->post("SignupForm")["password_md5"];
+//			$captcha = Yii::$app->request->post("SignupForm")["verifyCode"];
+//
+//			$query = Users::find()->where(['email' => $email, 'password_md5' => md5($pass)])->one();
+//
+//			if(!empty($query) && $captcha)
+//			{
+//				Yii::$app->user->login();
+//				return $this->goHome();
+//			}
+//
+//			return $this->render('signup', compact('model'));
+//
+//		}
+
+		return $this->render('signup', compact('model'));
+
 	}
 
 

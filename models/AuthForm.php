@@ -10,6 +10,7 @@ class AuthForm extends Model
 	public $password_md5;
 	public $verifyCode;
 
+
 	public function rules()
 	{
 		return
