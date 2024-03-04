@@ -16,7 +16,7 @@ class SiteController extends Controller
     {
         return [
             'access' => [
-                'class' => AccessControl::class,
+                'class' => AccessControl::className(),
                 'only' => ['logout'],
                 'rules' => [
                     [
@@ -52,7 +52,6 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
-
     public function actionLogin()
     {
 		$model = new AuthForm();
@@ -61,13 +60,16 @@ class SiteController extends Controller
 		{
 			$email = Yii::$app->request->post("AuthForm")["email"];
 			$pass = Yii::$app->request->post("AuthForm")["password"];
+			$captcha = Yii::$app->request->post("AuthForm")["verifyCode"];
 
-			$query = Users::find()->where(['email' => $email, 'password_md5' => md5($pass)])->one();
+			$query = Users::find()->where(['email' => $email, 'password' => md5($pass)])->one();
 
-			if(!empty($query))
+			if(!empty($query) && $captcha)
 			{
 				return $this->goHome();
 			}
+
+			return $this->render('login', compact('model'));
 
 		}
 
@@ -78,18 +80,12 @@ class SiteController extends Controller
 	{
 		return $this->render('registration');
 	}
-
-
-
-
     public function actionLogout()
     {
         Yii::$app->user->logout();
 
         return $this->goHome();
     }
-
-
     public function actionContact() // Displays contact page.
     {
         $model = new ContactForm();
@@ -103,8 +99,6 @@ class SiteController extends Controller
         return $this->render('contact', compact('model'));
 
     }
-
-
     public function actionAbout() // Displays about page.
     {
         return $this->render('about');

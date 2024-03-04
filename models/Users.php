@@ -22,7 +22,6 @@ use yii\web\IdentityInterface;
  * @property string|null $email
  * @property string|null $password_md5
  * @property string|null $date_last_logout
- * @property string|null $nickname
  * @property int|null $fk_role
  * @property string|null $created_at
  * @property string|null $updated_at

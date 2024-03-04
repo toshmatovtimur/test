@@ -8,6 +8,7 @@ class AuthForm extends Model
 {
 	public $email;
 	public $password;
+	public $verifyCode;
 
 	public function rules()
 	{
@@ -15,6 +16,7 @@ class AuthForm extends Model
 		[
 			[['password', 'email'], 'required' ],
 			[ 'email', 'email' ],
+			[ 'verifyCode', 'captcha' ],
 		];
 	}
 

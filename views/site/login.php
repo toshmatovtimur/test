@@ -7,6 +7,7 @@
 
 use yii\bootstrap5\ActiveForm;
 use yii\bootstrap5\Html;
+use yii\captcha\Captcha;
 
 $this->title = 'Авторизация';
 $this->params['breadcrumbs'][] = $this->title;
@@ -33,9 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <?= $form->field($model, 'password')->passwordInput() ?>
 
-
-
-
+	        <?= $form->field($model, 'verifyCode')->widget(Captcha::className()) ?>
 
 
             <div class="form-group">
