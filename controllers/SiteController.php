@@ -73,7 +73,6 @@ class SiteController extends Controller
 
 			if(!empty($query) && $captcha)
 			{
-				Yii::$app->user->login();
 				return $this->goHome();
 			}
 
@@ -95,6 +94,10 @@ class SiteController extends Controller
 	public function actionSignup()
 	{
 		$model = new SignupForm();
+
+
+
+
 
 //		if($model->load(Yii::$app->request->post()))
 //		{

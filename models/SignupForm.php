@@ -9,6 +9,7 @@
 		public $firstname;
 		public $middlename;
 		public $lastname;
+		
 		public $birthday;
 		public $sex;
 
@@ -48,4 +49,9 @@
 				'verifyCode' => 'Напечатайте слово',
 			];
 		}
+
+
+
+
+
 	}
