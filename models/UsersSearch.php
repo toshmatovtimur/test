@@ -15,7 +15,7 @@ class UsersSearch extends Users
     {
         return [
             [['id', 'fk_role'], 'integer'],
-            [['firstname', 'middlename', 'lastname', "birthday", 'sex', 'email', 'password_md5', 'date_last_logout', 'nickname'], 'safe'],
+            [['firstname', 'middlename', 'lastname', "birthday", 'sex', 'email', 'password_md5', 'date_last_logout'], 'safe'],
         ];
     }
 
@@ -60,8 +60,7 @@ class UsersSearch extends Users
               ->andFilterWhere(['ilike', 'lastname', $this->lastname])
               ->andFilterWhere(['ilike', 'sex', $this->sex])
               ->andFilterWhere(['ilike', 'email', $this->email])
-              ->andFilterWhere(['ilike', 'password', $this->password_md5])
-              ->andFilterWhere(['ilike', 'nickname', $this->nickname]);
+              ->andFilterWhere(['ilike', 'password', $this->password_md5]);
 
         return $dataProvider;
     }

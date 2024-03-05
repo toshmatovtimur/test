@@ -6,9 +6,11 @@
 
 use yii\bootstrap5\ActiveForm;
 use yii\bootstrap5\Html;
+use yii\captcha\Captcha;
 
 $this->title = 'Регистрация';
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="site-registration">
     <h1><?= Html::encode($this->title) ?></h1>
@@ -16,23 +18,37 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>Пожалуйста заполните поля ниже для регистрации:</p>
 
     <div class="row">
-        <div class="col-lg-5">
+        <div class="col-lg-4">
 
             <?php $form = ActiveForm::begin([
                 'id' => 'signup-form',
                 'fieldConfig' => [
-                    'template' => "{label}\n{input}\n{error}",
-                    'labelOptions' => ['class' => 'col-lg-1 col-form-label mr-lg-3'],
-                    'inputOptions' => ['class' => 'col-lg-3 form-control'],
-                    'errorOptions' => ['class' => 'col-lg-7 invalid-feedback'],
+                       'template' => "{label}{input}\n{error}",
+                      'labelOptions' => ['class' => 'col-lg-1 col-form-label mr-lg-4'],
+                      'inputOptions' => ['class' => 'col-lg-3 form-control'],
+                      'errorOptions' => ['class' => 'col-lg-7 invalid-feedback'],
                 ],
             ]); ?>
 
-            <?= $form->field($model, 'email')->textInput() ?>
+            <?= $form->field($model, 'firstname')->textInput(['placeholder' => 'Фамилия']) ?>
 
-            <?= $form->field($model, 'password')->passwordInput() ?>
+            <?= $form->field($model, 'middlename')->textInput(['placeholder' => 'Имя']) ?>
 
-	        <?= $form->field($model, 'verifyCode')->widget(Captcha::className()) ?>
+            <?= $form->field($model, 'lastname')->textInput(['placeholder' => 'Отчество']) ?>
+
+            <?= $form->field($model, 'birthday')->textInput(['placeholder' => 'Дата рождения'])->input('date') ?>
+
+            <?= $form->field($model, 'sex')->dropDownList(['Мужской', 'Женский', 'Неопределен']) ?>
+
+            <?= $form->field($model, 'email')->input('email')->textInput(['placeholder' => 'Email']) ?>
+
+            <?= $form->field($model, 'password_md5')->passwordInput() ?>
+
+            <?= $form->field($model, 'confirm')->passwordInput() ?>
+
+	        <?= $form->field($model, 'verifyCode')->textInput(['placeholder' => 'Введите текст'])->widget(Captcha::className(),[
+		        'template' => '{input}{image}'
+            ]) ?>
 
 
 

@@ -54,7 +54,7 @@ class Users extends ActiveRecord implements IdentityInterface
             [['sex'], 'string'],
             [['fk_role'], 'default', 'value' => null],
             [['fk_role'], 'integer'],
-            [['firstname', 'middlename', 'lastname', 'password'], 'string', 'max' => 120],
+            [['firstname', 'middlename', 'lastname', 'password_md5'], 'string', 'max' => 120],
             [['email'], 'string', 'max' => 60],
             [['email'], 'unique'],
             [['fk_role'], 'exist', 'skipOnError' => true, 'targetClass' => Role::class, 'targetAttribute' => ['fk_role' => 'id']],
@@ -72,7 +72,6 @@ class Users extends ActiveRecord implements IdentityInterface
             'birthday' => 'Дата рождения',
             'sex' => 'Пол',
             'email' => 'Email',
-            'password_md5' => 'Пароль',
             'date_last_logout' => 'Дата последнего входа',
             'nameRole' => 'Роль',
         ];

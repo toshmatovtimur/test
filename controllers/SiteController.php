@@ -14,7 +14,7 @@ use yii\filters\VerbFilter;
 
 class SiteController extends Controller
 {
-    public function behaviors()
+    public function behaviors() // Правила
     {
         return [
             'access' => [
@@ -26,11 +26,13 @@ class SiteController extends Controller
 		                'actions' => ['login', 'signup'],
 		                'roles' => ['?'],
 	                ],
+
 	                [
 		                'allow' => true,
 		                'actions' => ['logout'],
 		                'roles' => ['@'],
 	                ],
+
                 ],
             ],
             'verbs' => [
@@ -53,13 +55,14 @@ class SiteController extends Controller
         ];
     }
 
-
     public function actionIndex()
     {
         return $this->render('index');
     }
 
-    public function actionLogin()
+
+
+    public function actionLogin() // Авторизация // Дополнить
     {
 		$model = new AuthForm();
 
@@ -82,24 +85,44 @@ class SiteController extends Controller
 
 		return $this->render('login', compact('model'));
     }
-
-
-    public function actionLogout()
-    {
-        Yii::$app->user->logout();
-
-        return $this->goHome();
-    }
-
-	public function actionSignup()
+	public function actionLogout() // Выход
 	{
+		Yii::$app->user->logout();
+
+		return $this->goHome();
+	}
+	public function actionSignup() // Регистрация
+	{
+
 		$model = new SignupForm();
 
+		if($model->load(Yii::$app->request->post()))
+		{
+
+
+				$user = new Users();
+				$user->firstname = Yii::$app->request->post("SignupForm")["firstname"];
+				$user->middlename = Yii::$app->request->post("SignupForm")["middlename"];
+				$user->lastname  = Yii::$app->request->post("SignupForm")["lastname"];
+				$user->birthday   = Yii::$app->request->post("SignupForm")["birthday"];
+				$user->sex       = Yii::$app->request->post("SignupForm")["sex"];
+				$user->email     = Yii::$app->request->post("SignupForm")["email"];
+				$passMd5 = Yii::$app->request->post('SignupForm')["password_md5"];
+				$user->password_md5  = md5($passMd5);
+				$user->created_at = date("Y-m-d H:i:s");
+				$user->fk_role    = 1;
+
+				$user->save();
 
 
 
+			//return $this->render('signup', compact('model'));
 
-//		if($model->load(Yii::$app->request->post()))
+		}
+
+
+
+		//		if($model->load(Yii::$app->request->post()))
 //		{
 //			$email = Yii::$app->request->post("SignupForm")["email"];
 //			$pass = Yii::$app->request->post("SignupForm")["password_md5"];
@@ -122,8 +145,11 @@ class SiteController extends Controller
 	}
 
 
-    public function actionContact() // Displays contact page.
-    {
+
+
+	#region Неиспользуемые пока функции
+	public function actionContact() // Displays contact page.
+	{
 //        $model = new ContactForm();
 //        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail']))
 //        {
@@ -134,9 +160,10 @@ class SiteController extends Controller
 //
 //        return $this->render('contact', compact('model'));
 
-    }
-    public function actionAbout() // Displays about page.
-    {
-        return $this->render('about');
-    }
+	}
+	public function actionAbout() // Displays about page.
+	{
+		return $this->render('about');
+	}
+	#endregion
 }
