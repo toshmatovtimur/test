@@ -12,9 +12,11 @@ use yii\web\Response;
 
 
 class MyController extends Controller
-{ 
+{
+
     public function behaviors()
     {
+        $min = 5;
         return array_merge(
             parent::behaviors(),
             [
@@ -35,6 +37,7 @@ class MyController extends Controller
     {
         $searchModel = new UsersSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
+
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -67,6 +70,8 @@ class MyController extends Controller
 
         return $this->render('create', ['model' => $model]);
     }
+
+
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -80,16 +85,24 @@ class MyController extends Controller
 
         return $this->render('update', ['model' => $model]);
     }
+
+
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $this->FindModel($id)->delete();
+
+        
 
         return $this->redirect(['index']);
     }
+
+
     public function actionDownload() // Скачивание
     {
-        return \Yii::$app->response->sendFile('..\resources\devochka-kraski-karie-glaza-raznye-tsveta-intel.jpg');
+        return Yii::$app->response->sendFile('..\resources\devochka-kraski-karie-glaza-raznye-tsveta-intel.jpg');
     }
+
+
     public function actionTest()
     {
 
@@ -108,12 +121,8 @@ class MyController extends Controller
 
 
 
-
-
-
-    protected function findModel($id) // Метод для запроса
+    protected function FindModel($id) // Метод для запроса
     {
-
 		$model = Users::find()
 			->select(['users.*', 'role.role_user as nameRole'])
 			->innerJoinWith('role', 'role.id = users.fk_role')

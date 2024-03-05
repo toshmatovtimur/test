@@ -110,15 +110,19 @@ class Users extends ActiveRecord implements IdentityInterface
 		return static::findOne(['access_token' => $token]);
 	}
 
+
+
 	public function getId()
 	{
 		return $this->getPrimaryKey();
 	}
 
+
 	public function validateAuthKey($authKey)
 	{
 		return $this->getAuthKey() === $authKey;
 	}
+
 
 	public function setPasswordInMD5($password)
 	{
@@ -161,6 +165,7 @@ class Users extends ActiveRecord implements IdentityInterface
     {
         return $this->hasMany(Views::class, ['fk_user' => 'id']);
     }
+	
 
     #endregion
 }
