@@ -7,6 +7,7 @@ use app\models\Users;
 use app\models\AuthForm;
 use app\models\SignupForm;
 use yii\filters\AccessControl;
+use yii\helpers\VarDumper;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
@@ -99,24 +100,23 @@ class SiteController extends Controller
 		if($model->load(Yii::$app->request->post()))
 		{
 
-
 				$user = new Users();
 				$user->firstname = Yii::$app->request->post("SignupForm")["firstname"];
 				$user->middlename = Yii::$app->request->post("SignupForm")["middlename"];
 				$user->lastname  = Yii::$app->request->post("SignupForm")["lastname"];
 				$user->birthday   = Yii::$app->request->post("SignupForm")["birthday"];
-				$user->sex       = Yii::$app->request->post("SignupForm")["sex"];
-				$user->email     = Yii::$app->request->post("SignupForm")["email"];
-				$passMd5 = Yii::$app->request->post('SignupForm')["password_md5"];
-				$user->password_md5  = md5($passMd5);
-				$user->created_at = date("Y-m-d H:i:s");
-				$user->fk_role    = 1;
+				//$user->sex       = Yii::$app->request->post("SignupForm")["sex"];
+				//$user->email     = Yii::$app->request->post("SignupForm")["email"];
+				//$passMd5 = Yii::$app->request->post('SignupForm')["password_md5"];
+				//$user->password_md5  = md5($passMd5);
+			   // $user->created_at = date("Y-m-d");
+				//$user->fk_role    = 1;
 
 				$user->save();
 
 
 
-			//return $this->render('signup', compact('model'));
+			return $this->render('signup', compact('model'));
 
 		}
 

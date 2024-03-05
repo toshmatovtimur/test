@@ -50,9 +50,9 @@ class Users extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['birthday', 'date_last_logout'], 'date'],
+//            [['birthday', 'date_last_logout'], 'date'],
             [['sex'], 'string'],
-            [['fk_role'], 'default', 'value' => null],
+            [['fk_role'], 'default', 'value' => 1],
             [['fk_role'], 'integer'],
             [['firstname', 'middlename', 'lastname', 'password_md5'], 'string', 'max' => 120],
             [['email'], 'string', 'max' => 60],
