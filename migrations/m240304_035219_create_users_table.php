@@ -40,11 +40,7 @@ class m240304_035219_create_users_table extends Migration
 		    'NO ACTION'
 	    );
 
-	    // drops foreign key for table `category`
-	    $this->dropForeignKey(
-		    'users_fk_role_fkey',
-		    'users'
-	    );
+
 
     }
 
@@ -54,5 +50,11 @@ class m240304_035219_create_users_table extends Migration
     public function safeDown()
     {
         $this->dropTable('users');
+
+	    // drops foreign key for table `category`
+	    $this->dropForeignKey(
+		    'users_fk_role_fkey',
+		    'users'
+	    );
     }
 }
