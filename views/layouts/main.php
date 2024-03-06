@@ -60,6 +60,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
              ['label' => 'Регистрация', 'url' => ['/site/signup']],
              ['label' => 'Пользователи', 'url' => ['/my/index']],
              ['label' => 'Тестовая', 'url' => ['/my/test']],
+             ['label' => 'Админка', 'url' => ['/admin/index']],
              ['label' => 'Выход', 'url' => ['/site/logout']],
         ]
     ]);

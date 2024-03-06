@@ -1,4 +1,12 @@
 <?php
 
+	/** @var yii\web\View $this */
 
-	echo 'Привет мир';
+	$this->title = 'Админка';
+
+?>
+
+
+
+
+
