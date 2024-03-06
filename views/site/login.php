@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <?= $form->field($model, 'password_md5')->passwordInput() ?>
 
-	        <?= $form->field($model, 'verifyCode')->widget(Captcha::className()) ?>
+	        <?= $form->field($model, 'verifyCode')->widget(Captcha::className(),['template' => '{input}{image}']) ?>
 
 
             <div class="form-group">
@@ -43,6 +43,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
 
+            <!-- Предложение регистрации -->
+            <div>
+                <p>Еще нет аккаунта?  <a href="signup"> Зарегистрируйтесь</a></p>
+            </div>
 
             <?php ActiveForm::end(); ?>
 

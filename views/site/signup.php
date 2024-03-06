@@ -46,31 +46,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <?= $form->field($model, 'confirm')->passwordInput() ?>
 
-	        <?= $form->field($model, 'verifyCode')->textInput(['placeholder' => 'Введите текст'])->widget(Captcha::className(),[
-		        'template' => '{input}{image}'
-            ]) ?>
-
-
-
+	        <?= $form->field($model, 'verifyCode')->widget(Captcha::className(),['template' => '{input}{image}']) ?>
 
             <div class="form-group">
                 <div>
                     <?= Html::submitButton('Зарегистрироваться', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
                 </div>
             </div>
-
-
             <?php ActiveForm::end(); ?>
-
-
-
-
-
         </div>
     </div>
 </div>
-
-<?php
-
-	debug($arr);
 

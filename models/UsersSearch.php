@@ -15,7 +15,7 @@ class UsersSearch extends Users
     {
         return [
             [['id', 'fk_role'], 'integer'],
-            [['firstname', 'middlename', 'lastname', "birthday", 'sex', 'email', 'password_md5', 'date_last_logout'], 'safe'],
+            [['firstname', 'middlename', 'lastname', "birthday", 'sex', 'email', 'password_md5', 'date_last_login'], 'safe'],
         ];
     }
 
@@ -51,7 +51,7 @@ class UsersSearch extends Users
         $query->andFilterWhere([
             'id' => $this->id,
             'birthday' => $this->birthday,
-            'date_last_logout' => $this->date_last_logout,
+            'date_last_logout' => $this->date_last_login,
             'fk_role' => $this->fk_role,
         ]);
 

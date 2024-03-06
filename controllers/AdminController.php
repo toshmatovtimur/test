@@ -12,16 +12,8 @@
 			return $this->render('index');
 		}
 
-		public function actionShow()
+		public function actionUsers()
 		{
 			return $this->render('show');
 		}
-
-		public function actionRend()
-		{
-
-		}
-
-
-
 	}

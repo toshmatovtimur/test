@@ -25,7 +25,7 @@ use yii\web\IdentityInterface;
  * @property string|null $sex
  * @property string|null $email
  * @property string|null $password_md5
- * @property string|null $date_last_logout
+ * @property string|null $date_last_login
  * @property int|null $fk_role
  * @property string|null $created_at
  * @property string|null $updated_at
@@ -72,7 +72,7 @@ class Users extends ActiveRecord implements IdentityInterface
             'birthday' => 'Дата рождения',
             'sex' => 'Пол',
             'email' => 'Email',
-            'date_last_logout' => 'Дата последнего входа',
+            'date_last_login' => 'Дата последнего входа',
             'nameRole' => 'Роль',
         ];
     }
