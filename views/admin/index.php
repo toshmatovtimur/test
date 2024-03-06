@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'lastname',
             //'birthday',
             //'sex',
-            //'email:email',
+            'email:email',
             //'password_md5',
             'date_last_login',
             'fk_role',
@@ -46,9 +46,10 @@ $this->params['breadcrumbs'][] = $this->title;
             //'access_token',
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Users $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                'urlCreator' => function ($action, Users $model, $key, $index, $column)
+                                {
+                                    return Url::toRoute([$action, 'id' => $model->id]);
+                                }
             ],
         ],
     ]); ?>
