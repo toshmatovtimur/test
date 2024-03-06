@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <?= $form->field($model, 'birthday')->textInput(['placeholder' => 'Дата рождения'])->input('date') ?>
 
-            <?= $form->field($model, 'sex')->dropDownList(['Мужской', 'Женский', 'Неопределен']) ?>
+            <?= $form->field($model, 'sex')->dropDownList(['Male' => 'Male', 'Female' => 'Female']) ?>
 
             <?= $form->field($model, 'email')->input('email')->textInput(['placeholder' => 'Email']) ?>
 
@@ -72,5 +72,5 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?php
 
-
+	debug($arr);
 

@@ -12,8 +12,6 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'nickname')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'firstname')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'middlename')->textInput(['maxlength' => true]) ?>
@@ -26,7 +24,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'password_md5')->passwordInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'date_last_logout')->input('date') ?>
 

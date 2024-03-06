@@ -39,8 +39,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'sex',
             'email:email',
             //'password',
-            //'date_last_logout',
-            'nickname',
             'nameRole',
             [
                 'class' => ActionColumn::className(),
